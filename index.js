@@ -26,12 +26,16 @@ client.on('message', message => {
         
         // sends private message to user
         message.author.send(":heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart: \n:christmas_tree: Hi! Thanks for participating in Secret Santa! :santa: \nJust fill out the forum below! \nYou'll be DM'd your giftee's info in a few days.\n\n:star2: **IMPORTANT** :star2: \nAt the bottom is your **Auth Key**. \nCopy and paste this into the forum.\n(This prevents anyone from impersonating you)\n\n:gift: <https://forms.gle/UHBi7Xpg2fFSqy717>:gift: \n:heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart::white_heart::heart:");
-        message.author.send("`" + authKey + "`");
+        message.author.send(`\`${authKey}\``);
 
         // confirmation messages to console and discord
         message.channel.send(":bell: Instructions have been sent to your DM's!")
-        console.log(message.author.username + " used .s join.");
+        console.log(`${message.author.username} used .s join.`);
     };
 
-    
+    if(message.content == '.s match'){
+        // runs match.js
+        let matchFile = require(`./match.js`);
+        matchFile.run(client, message);
+    };
 });
